@@ -1,0 +1,91 @@
+from gsim.utils.NioData import *
+from gsim.data import DataManagerMapped
+from gsim.data import DataRegistry as dr
+from gsim.data import Universe as uv
+from gsim.utils import Calendar
+import numpy as np
+
+
+class DmgrFguo4(DataManagerMapped):
+    def __init__(self, ):
+        DataManagerMapped.__init__(self, )
+        self.afternoon_imbalance = NIO_MATRIX()
+        self.avg_buy_order_size = NIO_MATRIX()
+        self.avg_order_volume = NIO_MATRIX()
+        self.avg_sell_order_size = NIO_MATRIX()
+        self.buy_order_count = NIO_MATRIX()
+        self.buy_order_intensity = NIO_MATRIX()
+        self.buy_order_volume = NIO_MATRIX()
+        self.buy_sell_order_ratio = NIO_MATRIX()
+        self.buy_sell_volume_ratio = NIO_MATRIX()
+        self.close_30min_imbalance = NIO_MATRIX()
+        self.large_buy_order_count = NIO_MATRIX()
+        self.large_buy_sell_ratio = NIO_MATRIX()
+        self.large_order_count = NIO_MATRIX()
+        self.large_order_imbalance = NIO_MATRIX()
+        self.large_order_volume_ratio = NIO_MATRIX()
+        self.large_sell_order_count = NIO_MATRIX()
+        self.median_order_volume = NIO_MATRIX()
+        self.morning_imbalance = NIO_MATRIX()
+        self.open_30min_imbalance = NIO_MATRIX()
+        self.order_flow_imbalance = NIO_MATRIX()
+        self.order_imbalance_count = NIO_MATRIX()
+        self.order_imbalance_volume = NIO_MATRIX()
+        self.order_intensity = NIO_MATRIX()
+        self.order_size_asymmetry = NIO_MATRIX()
+        self.order_size_dispersion = NIO_MATRIX()
+        self.order_volume_kurt = NIO_MATRIX()
+        self.order_volume_skew = NIO_MATRIX()
+        self.order_volume_std = NIO_MATRIX()
+        self.sell_order_count = NIO_MATRIX()
+        self.sell_order_intensity = NIO_MATRIX()
+        self.sell_order_volume = NIO_MATRIX()
+        self.small_order_count = NIO_MATRIX()
+        self.small_order_volume = NIO_MATRIX()
+        self.small_order_volume_ratio = NIO_MATRIX()
+        self.total_order_count = NIO_MATRIX()
+        self.total_order_volume = NIO_MATRIX()
+        return
+
+    def initialize(self, id, path, cfg):
+        DataManagerMapped.initialize(self, id, path, cfg)
+        self.addDailyData(self.afternoon_imbalance, 'fguo_1224_order.afternoon_imbalance')
+        self.addDailyData(self.avg_buy_order_size, 'fguo_1224_order.avg_buy_order_size')
+        self.addDailyData(self.avg_order_volume, 'fguo_1224_order.avg_order_volume')
+        self.addDailyData(self.avg_sell_order_size, 'fguo_1224_order.avg_sell_order_size')
+        self.addDailyData(self.buy_order_count, 'fguo_1224_order.buy_order_count')
+        self.addDailyData(self.buy_order_intensity, 'fguo_1224_order.buy_order_intensity')
+        self.addDailyData(self.buy_order_volume, 'fguo_1224_order.buy_order_volume')
+        self.addDailyData(self.buy_sell_order_ratio, 'fguo_1224_order.buy_sell_order_ratio')
+        self.addDailyData(self.buy_sell_volume_ratio, 'fguo_1224_order.buy_sell_volume_ratio')
+        self.addDailyData(self.close_30min_imbalance, 'fguo_1224_order.close_30min_imbalance')
+        self.addDailyData(self.large_buy_order_count, 'fguo_1224_order.large_buy_order_count')
+        self.addDailyData(self.large_buy_sell_ratio, 'fguo_1224_order.large_buy_sell_ratio')
+        self.addDailyData(self.large_order_count, 'fguo_1224_order.large_order_count')
+        self.addDailyData(self.large_order_imbalance, 'fguo_1224_order.large_order_imbalance')
+        self.addDailyData(self.large_order_volume_ratio, 'fguo_1224_order.large_order_volume_ratio')
+        self.addDailyData(self.large_sell_order_count, 'fguo_1224_order.large_sell_order_count')
+        self.addDailyData(self.median_order_volume, 'fguo_1224_order.median_order_volume')
+        self.addDailyData(self.morning_imbalance, 'fguo_1224_order.morning_imbalance')
+        self.addDailyData(self.open_30min_imbalance, 'fguo_1224_order.open_30min_imbalance')
+        self.addDailyData(self.order_flow_imbalance, 'fguo_1224_order.order_flow_imbalance')
+        self.addDailyData(self.order_imbalance_count, 'fguo_1224_order.order_imbalance_count')
+        self.addDailyData(self.order_imbalance_volume, 'fguo_1224_order.order_imbalance_volume')
+        self.addDailyData(self.order_intensity, 'fguo_1224_order.order_intensity')
+        self.addDailyData(self.order_size_asymmetry, 'fguo_1224_order.order_size_asymmetry')
+        self.addDailyData(self.order_size_dispersion, 'fguo_1224_order.order_size_dispersion')
+        self.addDailyData(self.order_volume_kurt, 'fguo_1224_order.order_volume_kurt')
+        self.addDailyData(self.order_volume_skew, 'fguo_1224_order.order_volume_skew')
+        self.addDailyData(self.order_volume_std, 'fguo_1224_order.order_volume_std')
+        self.addDailyData(self.sell_order_count, 'fguo_1224_order.sell_order_count')
+        self.addDailyData(self.sell_order_intensity, 'fguo_1224_order.sell_order_intensity')
+        self.addDailyData(self.sell_order_volume, 'fguo_1224_order.sell_order_volume')
+        self.addDailyData(self.small_order_count, 'fguo_1224_order.small_order_count')
+        self.addDailyData(self.small_order_volume, 'fguo_1224_order.small_order_volume')
+        self.addDailyData(self.small_order_volume_ratio, 'fguo_1224_order.small_order_volume_ratio')
+        self.addDailyData(self.total_order_count, 'fguo_1224_order.total_order_count')
+        self.addDailyData(self.total_order_volume, 'fguo_1224_order.total_order_volume')
+        return
+
+    def loadDay(self, di):
+        pass
